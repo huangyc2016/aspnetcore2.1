@@ -100,6 +100,13 @@ namespace HYC.WebApi
                 });
             });
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Client", policy => policy.RequireRole("Client").Build());
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin").Build());
+                options.AddPolicy("AdminOrClient", policy => policy.RequireRole("Admin,Client").Build());
+            });
+
             //添加jwt验证：
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -149,7 +156,7 @@ namespace HYC.WebApi
 
             app.UseMiddleware<TokenAuth>();//TokenAuth类注册为中间件
 
-            app.UseAuthentication();//启用验证
+            //app.UseAuthentication();//启用验证
 
             //跨域支持
             app.UseCors("SignalrCore");

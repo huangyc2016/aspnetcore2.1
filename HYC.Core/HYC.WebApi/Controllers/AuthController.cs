@@ -25,49 +25,32 @@ namespace HYC.WebApi.Controllers
             _configuration = configuration;
         }
 
-        
 
         /// <summary>
         /// login(颁发token)
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="id"></param>
+        /// <param name="sub"></param>
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult RequestToken([FromBody] TokenRequest request)
+        public IActionResult RequestToken(long id = 1, string sub = "Admin")
         {
+            //这里就是用户登陆以后，通过数据库去调取数据，分配权限的操作
             TokenModel tokenModel = new TokenModel();
-            tokenModel.Uname = request.Username;
-            tokenModel.Uid = 0;
-            tokenModel.Sub = "";
+            tokenModel.Uid = id;
+            tokenModel.Role = sub;
 
-            //需要查询数据,验证用户是否存在,查询出帐号信息
-            //....
-            //....
-
-            if (request.Username == "huangyc" && request.Password == "123456")
+            if (id == 1)
             {
-
-                ApiToken apiToken = new ApiToken(_configuration);
-                var encodedJwt= apiToken.IssueJWT(tokenModel);
-
-                //TokenMemoryCache.AddMemoryCache(encodedJwt, tokenModel, expiresSliding, expiresAbsoulte);//将JWT字符串和tokenModel作为key和value存入缓存
-
+                TokenHelper tokenHelper = new TokenHelper(_configuration);
+                var encodedJwt = tokenHelper.IssueJWT(tokenModel);
                 return Ok(new
                 {
                     token = encodedJwt
                 });
             }
-
             return BadRequest("Could not verify username and password");
-
         }
     }
-
-    public class TokenRequest
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
-    }
-
 }

@@ -4,13 +4,6 @@
         <name>HYC.WebApi</name>
     </assembly>
     <members>
-        <member name="M:HYC.WebApi.AuthHelper.ApiToken.IssueJWT(HYC.WebApi.AuthHelper.TokenModel)">
-            <summary>
-            获取JWT字符串
-            </summary>
-            <param name="tokenModel"></param>
-            <returns></returns>
-        </member>
         <member name="F:HYC.WebApi.AuthHelper.TokenAuth._next">
             <summary>
             http委托
@@ -28,6 +21,20 @@
             验证授权
             </summary>
             <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.AuthHelper.TokenHelper.IssueJWT(HYC.WebApi.AuthHelper.TokenModel)">
+            <summary>
+            获取JWT字符串
+            </summary>
+            <param name="tokenModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.AuthHelper.TokenHelper.SerializeJWT(System.String)">
+            <summary>
+            解析JWT字符串
+            </summary>
+            <param name="jwtStr"></param>
             <returns></returns>
         </member>
         <member name="M:HYC.WebApi.AuthHelper.TokenMemoryCache.Exists(System.String)">
@@ -56,39 +63,25 @@
         </member>
         <member name="P:HYC.WebApi.AuthHelper.TokenModel.Uid">
             <summary>
-            用户Id
+            Id
             </summary>
         </member>
-        <member name="P:HYC.WebApi.AuthHelper.TokenModel.Uname">
+        <member name="P:HYC.WebApi.AuthHelper.TokenModel.Role">
             <summary>
-            用户名
+            角色
             </summary>
         </member>
-        <member name="P:HYC.WebApi.AuthHelper.TokenModel.Phone">
+        <member name="P:HYC.WebApi.AuthHelper.TokenModel.Work">
             <summary>
-            手机
+            职能
             </summary>
         </member>
-        <member name="P:HYC.WebApi.AuthHelper.TokenModel.Icon">
-            <summary>
-            头像
-            </summary>
-        </member>
-        <member name="P:HYC.WebApi.AuthHelper.TokenModel.UNickname">
-            <summary>
-            昵称
-            </summary>
-        </member>
-        <member name="P:HYC.WebApi.AuthHelper.TokenModel.Sub">
-            <summary>
-            身份
-            </summary>
-        </member>
-        <member name="M:HYC.WebApi.Controllers.AuthController.RequestToken(HYC.WebApi.Controllers.TokenRequest)">
+        <member name="M:HYC.WebApi.Controllers.AuthController.RequestToken(System.Int64,System.String)">
             <summary>
             login(颁发token)
             </summary>
-            <param name="request"></param>
+            <param name="id"></param>
+            <param name="sub"></param>
             <returns></returns>
         </member>
         <member name="M:HYC.WebApi.Controllers.ValuesController.Get">

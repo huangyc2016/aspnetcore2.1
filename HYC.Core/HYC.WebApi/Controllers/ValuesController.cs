@@ -17,7 +17,7 @@ namespace HYC.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
+        [Authorize(Policy ="Admin")]
         public ActionResult<List<Users>> Get()
         {
             var list = new List<Users>();

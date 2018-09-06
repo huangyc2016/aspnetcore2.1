@@ -45,12 +45,14 @@ namespace HYC.WebApi.AuthHelper
                 string jwtStr = tokenStr.ToString().Substring("Bearer ".Length).Trim();
                 //验证缓存中是否存在该jwt字符串
 
-                var JwtSecurityToken = new JwtSecurityTokenHandler().ReadJwtToken(jwtStr);
+                TokenModel tm = TokenHelper.SerializeJWT(jwtStr);//序列化token，获取授权
 
-                var claims = JwtSecurityToken.Claims;
-
-                ClaimsIdentity identity = new ClaimsIdentity(claims);
-                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                //授权
+                var claimList = new List<Claim>();
+                var claim = new Claim(ClaimTypes.Role, tm.Role);
+                claimList.Add(claim);
+                var identity = new ClaimsIdentity(claimList);
+                var principal = new ClaimsPrincipal(identity);
                 httpContext.User = principal;
                 return _next(httpContext);
             }
