@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HYC.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:HYC.WebApi.AuthHelper.ApiToken.IssueJWT(HYC.WebApi.AuthHelper.TokenModel)">
+            <summary>
+            获取JWT字符串
+            </summary>
+            <param name="tokenModel"></param>
+            <returns></returns>
+        </member>
+        <member name="F:HYC.WebApi.AuthHelper.TokenAuth._next">
+            <summary>
+            http委托
+            </summary>
+        </member>
+        <member name="M:HYC.WebApi.AuthHelper.TokenAuth.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="next"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:HYC.WebApi.AuthHelper.TokenAuth.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            验证授权
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.AuthHelper.TokenMemoryCache.Exists(System.String)">
+            <summary>
+            验证缓存项是否存在
+            </summary>
+            <param name="key">缓存Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.AuthHelper.TokenMemoryCache.Get(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <param name="key">缓存Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.AuthHelper.TokenMemoryCache.AddMemoryCache(System.String,System.Object,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            添加缓存
+            </summary>
+            <param name="key">缓存Key</param>
+            <param name="value">缓存Value</param>
+            <param name="expiresSliding">滑动过期时长（如果在过期时间内有操作，则以当前时间点延长过期时间）</param>
+            <param name="expiressAbsoulte">绝对过期时长</param>
+            <returns></returns>
+        </member>
+        <member name="P:HYC.WebApi.AuthHelper.TokenModel.Uid">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:HYC.WebApi.AuthHelper.TokenModel.Uname">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:HYC.WebApi.AuthHelper.TokenModel.Phone">
+            <summary>
+            手机
+            </summary>
+        </member>
+        <member name="P:HYC.WebApi.AuthHelper.TokenModel.Icon">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:HYC.WebApi.AuthHelper.TokenModel.UNickname">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:HYC.WebApi.AuthHelper.TokenModel.Sub">
+            <summary>
+            身份
+            </summary>
+        </member>
+        <member name="M:HYC.WebApi.Controllers.AuthController.RequestToken(HYC.WebApi.Controllers.TokenRequest)">
+            <summary>
+            login(颁发token)
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.Controllers.ValuesController.Get">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HYC.WebApi.HttpClientHelpClass">
+            <summary>
+            HttpClient请求
+            </summary>
+        </member>
+        <member name="M:HYC.WebApi.HttpClientHelpClass.GetResponse(System.String,System.String@)">
+            <summary>
+            get请求
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.HttpClientHelpClass.PostResponse(System.String,System.String,System.String@)">
+            <summary>
+            post请求
+            </summary>
+            <param name="url"></param>
+            <param name="postData">post数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.HttpClientHelpClass.PostResponse``1(System.String,System.String)">
+            <summary>
+            发起post请求
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="url">url</param>
+            <param name="postData">post数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.HttpClientHelpClass.PostJsonAsync(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            异步post请求
+            </summary>
+            <param name="url"></param>
+            <param name="jsonParam"></param>
+            <param name="encode"></param>
+            <param name="dic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.HttpClientHelpClass.XmlDeserialize``1(System.String)">
+            <summary>
+            反序列化Xml
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="xmlString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.HttpClientHelpClass.KongPatchResponse(System.String,System.String)">
+            <summary>
+            修改API
+            </summary>
+            <param name="url"></param>
+            <param name="postData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.HttpClientHelpClass.KongAddResponse(System.String,System.String)">
+            <summary>
+            创建API
+            </summary>
+            <param name="url"></param>
+            <param name="postData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.HttpClientHelpClass.KongDeleteResponse(System.String)">
+            <summary>
+            删除API
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.HttpClientHelpClass.Delete(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            删除API
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.HttpClientHelpClass.KongPutResponse(System.String,System.String)">
+            <summary>
+            修改或者更改API        
+            </summary>
+            <param name="url"></param>
+            <param name="postData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HYC.WebApi.HttpClientHelpClass.KongSerchResponse(System.String)">
+            <summary>
+            检索API
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="P:HYC.WebApi.Users.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:HYC.WebApi.Users.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+    </members>
+</doc>
