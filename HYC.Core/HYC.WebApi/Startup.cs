@@ -156,8 +156,6 @@ namespace HYC.WebApi
 
             app.UseMiddleware<TokenAuth>();//TokenAuth类注册为中间件
 
-            //app.UseAuthentication();//启用验证
-
             //跨域支持
             app.UseCors("SignalrCore");
             app.UseSignalR(routes =>
