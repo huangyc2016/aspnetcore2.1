@@ -84,6 +84,12 @@
             <param name="sub"></param>
             <returns></returns>
         </member>
+        <member name="M:HYC.WebApi.Controllers.ValuesController.#ctor(Microsoft.Extensions.Caching.Distributed.IDistributedCache)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="cache"></param>
+        </member>
         <member name="M:HYC.WebApi.Controllers.ValuesController.Get">
             <summary>
             获取用户信息

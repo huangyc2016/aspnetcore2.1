@@ -41,26 +41,24 @@ namespace HYC.WebApi
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            //Add SignalR
-            //添加跨域
-            var urls = Configuration.GetSection("Cors")["default"].Split(',');
-
+            #region==signalR跨域和配置==
             services.AddCors(options => options.AddPolicy("SignalrCore",
             builder =>
             {
-                builder.WithOrigins(urls)
+                var corsurls = Configuration.GetSection("Cors")["default"].Split(',');
+                builder.WithOrigins(corsurls)
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowAnyOrigin()
                     .AllowCredentials();
             }));
             services.AddSignalR();
+            #endregion
 
+            #region==swagger配置==
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-               
-
                 c.SwaggerDoc("v1", new Info
                 {
                     Version = "v1",
@@ -99,7 +97,9 @@ namespace HYC.WebApi
                     Type = "apiKey"
                 });
             });
+            #endregion
 
+            #region ==jwt验证==
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Client", policy => policy.RequireRole("Client").Build());
@@ -127,6 +127,16 @@ namespace HYC.WebApi
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret))//拿到SecurityKey
                     };
                 });
+            #endregion
+
+            #region==Redis==
+            services.AddDistributedRedisCache(option => {
+                var redisip = Configuration.GetSection("Redis")["ip"];
+                var redisname = Configuration.GetSection("Redis")["name"];
+                option.Configuration = redisip;
+                option.InstanceName = redisname;
+            });
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -162,6 +172,7 @@ namespace HYC.WebApi
             {
                 routes.MapHub<ChatHubs>("/chatHubs");
             });
+
 
             app.UseStaticFiles();
             app.UseHttpsRedirection();
