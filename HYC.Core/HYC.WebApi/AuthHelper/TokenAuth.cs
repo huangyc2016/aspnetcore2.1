@@ -42,7 +42,9 @@ namespace HYC.WebApi.AuthHelper
             var tokenStr = headers["Authorization"];
             try
             {
-                string jwtStr = tokenStr.ToString().Substring("Bearer ".Length).Trim();
+                //core 默认的Authorization是有Bearer ,
+                //string jwtStr = tokenStr.ToString().Substring("Bearer ".Length).Trim();
+                string jwtStr = tokenStr.ToString().Trim();
                 //验证缓存中是否存在该jwt字符串
 
                 TokenModel tm = TokenHelper.SerializeJWT(jwtStr);//序列化token，获取授权

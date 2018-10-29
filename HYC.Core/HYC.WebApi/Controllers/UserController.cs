@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HYC.WebApi.Response;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
@@ -9,9 +10,9 @@ using Microsoft.Extensions.Caching.Distributed;
 namespace HYC.WebApi.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[action]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class UserController : ControllerBase
     {
         private IDistributedCache _cache { get; set; }
 
@@ -19,7 +20,7 @@ namespace HYC.WebApi.Controllers
         /// 构造函数
         /// </summary>
         /// <param name="cache"></param>
-        public ValuesController(IDistributedCache cache)
+        public UserController(IDistributedCache cache)
         {
             _cache = cache;
         }
@@ -30,14 +31,19 @@ namespace HYC.WebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(Policy ="Admin")]
-        public ActionResult<List<Users>> Get()
+        public ResponseData Get()
         {
             var key = "HYC.UserAction_2";
-            string customer = _cache.GetString(key);
+            //string customer = _cache.GetString(key);
             //_cache.SetString(key, "123456");
             var list = new List<Users>();
-            list.Add(new Users() { UserName = "huangyc", Password = "123456" });
-            return list;
+            list.Add(new Users() { Id = 1, UserName = "huangyc", Password = "123456" });
+
+            return new ResponseData()
+            {
+                code = 0,
+                body = list
+            };
         }
     }
 }

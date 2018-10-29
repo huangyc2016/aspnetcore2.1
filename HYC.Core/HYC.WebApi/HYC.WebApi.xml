@@ -76,21 +76,21 @@
             职能
             </summary>
         </member>
-        <member name="M:HYC.WebApi.Controllers.AuthController.RequestToken(System.Int64,System.String)">
+        <member name="M:HYC.WebApi.Controllers.AuthController.RequestToken(System.String,System.String)">
             <summary>
             login(颁发token)
             </summary>
-            <param name="id"></param>
-            <param name="sub"></param>
+            <param name="name"></param>
+            <param name="pass"></param>
             <returns></returns>
         </member>
-        <member name="M:HYC.WebApi.Controllers.ValuesController.#ctor(Microsoft.Extensions.Caching.Distributed.IDistributedCache)">
+        <member name="M:HYC.WebApi.Controllers.UserController.#ctor(Microsoft.Extensions.Caching.Distributed.IDistributedCache)">
             <summary>
             构造函数
             </summary>
             <param name="cache"></param>
         </member>
-        <member name="M:HYC.WebApi.Controllers.ValuesController.Get">
+        <member name="M:HYC.WebApi.Controllers.UserController.Get">
             <summary>
             获取用户信息
             </summary>
@@ -187,6 +187,27 @@
             </summary>
             <param name="url"></param>
             <returns></returns>
+        </member>
+        <member name="P:HYC.WebApi.Response.ResponseData.code">
+            <summary>
+             错误码[0-表示操作成功，大于0表示操作失败]
+             10000-系统发生错误,10001-IP未授权,10002-系统维护中,10003-用户登录失效,10004-参数解密失败,10005-参数错误,10006-无效的厂商编码
+            </summary>
+        </member>
+        <member name="P:HYC.WebApi.Response.ResponseData.msg">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:HYC.WebApi.Response.ResponseData.body">
+            <summary>
+            响应数据
+            </summary>
+        </member>
+        <member name="P:HYC.WebApi.Users.Id">
+            <summary>
+            Id
+            </summary>
         </member>
         <member name="P:HYC.WebApi.Users.UserName">
             <summary>

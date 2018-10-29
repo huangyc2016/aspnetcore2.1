@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,13 +40,19 @@ namespace HYC.WebApi
             //依赖注入模块(HYC.Service,HYC.Repository)
             services.AddTransient<IUserService, UserService>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(jsonOption => {
+                jsonOption.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                //JSON返回时间格式处理
+                jsonOption.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+                //JSON返回大小写处理
+                jsonOption.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+            });
 
             #region==signalR跨域和配置==
             services.AddCors(options => options.AddPolicy("SignalrCore",
             builder =>
             {
-                var corsurls = Configuration.GetSection("Cors")["default"].Split(',');
+                var corsurls = Configuration.GetSection("SignalrCors")["default"].Split(',');
                 builder.WithOrigins(corsurls)
                     .AllowAnyMethod()
                     .AllowAnyHeader()
@@ -54,6 +61,16 @@ namespace HYC.WebApi
             }));
             services.AddSignalR();
             #endregion
+
+            services.AddCors(options => options.AddPolicy("Vue", builder =>
+            {
+                var corsurls = Configuration.GetSection("VueCors")["default"].Split(',');
+                builder.WithOrigins(corsurls)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowAnyOrigin()
+                    .AllowCredentials();
+            }));
 
             #region==swagger配置==
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -91,7 +108,9 @@ namespace HYC.WebApi
                 c.AddSecurityRequirement(security);//添加一个必须的全局安全信息，和AddSecurityDefinition方法指定的方案名称要一致，这里是Bearer
                 c.AddSecurityDefinition("Bearer", new ApiKeyScheme
                 {
-                    Description = "JWT Bearer 授权 \"Authorization:     Bearer+空格+token\"",
+                    //默认是Bearer+空格+token,本项目用中间件把Bearer+空格去掉了
+                    //默认是Bearer+空格+token,本项目用中间件把Bearer+空格去掉了
+                    Description = "JWT Bearer 授权 \"Authorization:token\"",
                     Name = "Authorization",
                     In = "header",
                     Type = "apiKey"
@@ -151,7 +170,6 @@ namespace HYC.WebApi
                 app.UseHsts();
             }
 
-            
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
@@ -167,6 +185,7 @@ namespace HYC.WebApi
             app.UseMiddleware<TokenAuth>();//TokenAuth类注册为中间件
 
             //跨域支持
+            app.UseCors("Vue");
             app.UseCors("SignalrCore");
             app.UseSignalR(routes =>
             {
