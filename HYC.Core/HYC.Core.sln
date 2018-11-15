@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HYC.WebApi", "HYC.WebApi\HY
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HYC.Services", "HYC.Services\HYC.Services.csproj", "{4EE6961C-24D5-405E-A0E8-BF21AEB17ADB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HYC.WebChat", "HYC.WebChat\HYC.WebChat.csproj", "{40A0C2A3-9D38-4356-84B7-F13B9CBB5868}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HYC.WebChat", "HYC.WebChat\HYC.WebChat.csproj", "{40A0C2A3-9D38-4356-84B7-F13B9CBB5868}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
