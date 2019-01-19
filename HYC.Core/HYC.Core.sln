@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HYC.Services", "HYC.Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HYC.WebChat", "HYC.WebChat\HYC.WebChat.csproj", "{40A0C2A3-9D38-4356-84B7-F13B9CBB5868}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HYC.ConsoleApp", "HYC.ConsoleApp\HYC.ConsoleApp.csproj", "{50C9F1B1-6E75-4945-A135-A7EB32470E7C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HYC.QuartzApp", "HYC.QuartzApp\HYC.QuartzApp.csproj", "{5F28116B-2D04-42C9-9CCE-C6BBCD602160}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{40A0C2A3-9D38-4356-84B7-F13B9CBB5868}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40A0C2A3-9D38-4356-84B7-F13B9CBB5868}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40A0C2A3-9D38-4356-84B7-F13B9CBB5868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50C9F1B1-6E75-4945-A135-A7EB32470E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50C9F1B1-6E75-4945-A135-A7EB32470E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50C9F1B1-6E75-4945-A135-A7EB32470E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50C9F1B1-6E75-4945-A135-A7EB32470E7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F28116B-2D04-42C9-9CCE-C6BBCD602160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F28116B-2D04-42C9-9CCE-C6BBCD602160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F28116B-2D04-42C9-9CCE-C6BBCD602160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F28116B-2D04-42C9-9CCE-C6BBCD602160}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
