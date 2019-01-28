@@ -15,9 +15,26 @@ namespace HYC.QuartzApp.Worker.Demo
     {
         public async Task Execute(IJobExecutionContext context)
         {
-            await Console.Out.WriteLineAsync($"B 开始 {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}");
-            await Task.Delay(60000);
-            await Console.Out.WriteLineAsync($"B 结束 {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}");
+            Program.loggerInfo.Info("服务B开始执行");
+            //具体操作
+            try
+            {
+                await Do();
+            }
+            catch (Exception ex)
+            {
+                Program.loggerError.Error($"服务B执行报错:{ex.ToString()}");
+            }
+
+            Program.loggerInfo.Info("服务B结束执行");
+        }
+
+        private async Task Do()
+        {
+            for (var i = 0; i < 10; i++)
+            {
+                await Console.Out.WriteLineAsync($"服务B执行输出: {i.ToString()}");
+            }
         }
     }
 }
